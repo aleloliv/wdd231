@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDD 231: Web Frontend Development I W01 Assignment: Course Home Page</title>
+    <meta name="description" content="This is the course home page for WDD 231: Web Frontend Development I from Alexandre de Morais Sanches Lorenzoni de Oliveira">
+    <meta name="author" content="Alexandre de Morais Sanches Lorenzoni de Oliveira">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main-desktop.css">
+    <script defer src="scripts/main.js"></script>
+</head>
+<body>
+    <header>
+        <img src="images/profile.jpg" alt="profile-image" loading="lazy">
+        <h1>Alexandre de M. S. L. de Oliveira</h1>
+        <button id="menu" aria-label="Mobile menu navigation"></button>
+        <nav class="navigation">
+            <ul>
+                <li class="index"><a href="index.html">Home</a></li>
+                <li class="chamber"><a href="#">Chamber</a></li>
+                <li class="github"><a href="https://github.com/aleloliv">Github Profile</a></li>
+                <li class="linkedin"><a href="https://www.linkedin.com/in/alexandre-sanches-lorenzoni-de-oliveira-86201a150/">LinkedIn</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="course">
+            <h2>Course Work</h2>
+            <ul>
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+            </ul>
+        </section>
+        <section class="city">
+            <h2>São Paulo, Brazil</h2>
+            <figure>
+                <img src="images/sao-paulo-city.jpg" alt="sao-paulo-city" loading="lazy">
+                <figcaption>Skyscrapers</figcaption>
+            </figure>
+        </section>
+        <section class="certificate">
+            <h2>Web and Computer Programming Certificate</h2>
+            <div class="departments">
+                <button onclick="filterCourses('all')">All</button>
+                <button onclick="filterCourses('CSE')">CSE</button>
+                <button onclick="filterCourses('WDD')">WDD</button>
+            </div>
+            <div id="courses-container"></div>
+            <p>Total Credits: <span id="total-credits"></span></p>
+        </section>
+    </main>
+    <footer>
+        <p class="year">©<span id="currentyear"></span></p>
+        <p class="name">Alexandre de Morais Sanches Lorenzoni de Oliveira</p>
+        <p class="country">São Paulo, Brazil</p>
+        <img src="images/bandeiranacionalbrasil_.jpg" alt="brazil-flag" loading="lazy">
+        <p id="lastModified"></p>
+    </footer>
+</body>
+</html>
