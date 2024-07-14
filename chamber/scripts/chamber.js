@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastModified.textContent = "Last Modification: " + formattedDate;
 
-    // Fetch weather data
-    fetchWeatherData();
+     // Fetch weather data
+     fetchWeatherData();
 
     // Fetch member data
     fetchMemberData();
@@ -65,34 +65,46 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navigation.classList.toggle('active');
-        hamburger.textContent = hamburger.classList.contains('active') ? '✕' : '☰';
+        hamburger.textContent = hamburger.classList.contains('active') ? '✕' : '☰'; // Unicode for 'X' and hamburger menu
     });
 });
 
 async function fetchWeatherData() {
     const apiKey = '63fd71280537dece5bc28ee2eb59fcc0';
     const city = 'Sao Paulo';
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
 
-    // Display current weather
-    document.getElementById('current-temp').textContent = Math.round(data.main.temp);
-    document.getElementById('weather-description').textContent = data.weather[0].description;
+        document.getElementById('current-temp').textContent = Math.round(data.main.temp);
+        document.getElementById('weather-description').textContent = data.weather[0].description;
 
-    // Fetch and display forecast data
-    const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
-    const forecastData = await forecastResponse.json();
+        // Fetch forecast
+        await fetchForecastData(city, apiKey);
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+    }
+}
 
-    const forecastContainer = document.getElementById('forecast');
-    forecastContainer.innerHTML = ''; // Clear previous content
+async function fetchForecastData(city, apiKey) {
+    try {
+        const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
+        if (!forecastResponse.ok) throw new Error('Network response was not ok');
+        const forecastData = await forecastResponse.json();
 
-    // Display three-day forecast
-    for (let i = 0; i < 3; i++) {
-        const dayData = forecastData.list[i * 8]; // Get the forecast for each day
-        const day = new Date(dayData.dt * 1000).toLocaleDateString();
-        const temp = Math.round(dayData.main.temp);
-        
-        forecastContainer.innerHTML += `<p>${day}: ${temp}°C</p>`;
+        const forecastContainer = document.getElementById('forecast');
+        forecastContainer.innerHTML = ''; // Clear previous content
+
+        // Display three-day forecast
+        for (let i = 0; i < 3; i++) {
+            const dayData = forecastData.list[i * 8]; // Get the forecast for each day
+            const day = new Date(dayData.dt * 1000).toLocaleDateString();
+            const temp = Math.round(dayData.main.temp);
+            forecastContainer.innerHTML += `<p>${day}: ${temp}°C</p>`;
+        }
+    } catch (error) {
+        console.error('Error fetching forecast data:', error);
     }
 }
 
@@ -105,7 +117,13 @@ async function fetchMemberData() {
 function displayMembers(members) {
     const directory = document.getElementById('directory');
     directory.innerHTML = '';
-    directory.classList.add('grid-view'); // Default view
+    // Check if we are on the index.html page
+    if (window.location.pathname.endsWith('index.html')) {
+        directory.style.display = 'none'; // Hide the directory
+        return; // Exit the function early
+    } else {
+        directory.classList.add('grid-view'); // Default view
+    }
 
     members.forEach(member => {
         const memberCard = document.createElement('div');
@@ -132,28 +150,26 @@ function displaySpotlights(members) {
     const spotlightList = document.getElementById('spotlight-list');
     spotlightList.innerHTML = ''; // Clear previous content
 
-    // Filter for Gold or Silver members
-    const qualifiedMembers = members.filter(member => member.membership_level === 'Gold' || member.membership_level === 'Silver');
+    // Filter for Gold (3) or Silver (2) members
+    const qualifiedMembers = members.filter(member => member.membership_level === 3 || member.membership_level === 2);
     
-    // Randomly select 2 or 3 members
-    const selectedMembers = [];
-    while (selectedMembers.length < 3 && qualifiedMembers.length > 0) {
+    if (qualifiedMembers.length > 0) {
+        // Randomly select one member
         const randomIndex = Math.floor(Math.random() * qualifiedMembers.length);
-        selectedMembers.push(qualifiedMembers[randomIndex]);
-        qualifiedMembers.splice(randomIndex, 1); // Remove selected member
-    }
+        const selectedMember = qualifiedMembers[randomIndex];
 
-    // Display selected members
-    selectedMembers.forEach(member => {
-        spotlightList.innerHTML += `
+        // Display the selected member
+        spotlightList.innerHTML = `
             <div class="spotlight">
-                <h3>${member.name}</h3>
-                <img src="images/${member.image_icon}" alt="${member.name} logo">
-                <p>Phone: ${member.phone_number}</p>
-                <p>Address: ${member.address}</p>
-                <p><a href="${member.website_url}" target="_blank">Visit Website</a></p>
-                <p>Membership Level: ${member.membership_level}</p>
+                <h3>${selectedMember.name}</h3>
+                <img src="images/${selectedMember.image_icon}" alt="${selectedMember.name} logo">
+                <p>Phone: ${selectedMember.phone_number}</p>
+                <p>Address: ${selectedMember.address}</p>
+                <p><a href="${selectedMember.website_url}" target="_blank">Visit Website</a></p>
+                <p>Membership Level: ${selectedMember.membership_level === 3 ? 'Gold' : 'Silver'}</p>
             </div>
         `;
-    });
+    } else {
+        spotlightList.innerHTML = `<p>No qualified members available for spotlight.</p>`;
+    }
 }
