@@ -258,6 +258,36 @@ nav ul {
     align-items: center;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 1200px; /* Max width for larger screens */
+    margin: auto; /* Center the main content */
+}
+
+.hero {
+    background: #f5f5f5; /* Light background for the hero section */
+    padding: 20px;
+    text-align: center;
+}
+
+#weather, #spotlights {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Make sure the text is readable */
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
 @media (min-width: 768px) {
     .grid-view {
         grid-template-columns: repeat(3, 1fr);

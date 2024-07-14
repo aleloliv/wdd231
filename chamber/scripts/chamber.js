@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lastModified.textContent = "Last Modification: " + formattedDate;
 
+    // Fetch weather data
+    fetchWeatherData();
+
     // Fetch member data
     fetchMemberData();
 
@@ -66,6 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+async function fetchWeatherData() {
+    const apiKey = '63fd71280537dece5bc28ee2eb59fcc0';
+    const city = 'Sao Paulo';
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+    const data = await response.json();
+
+    // Display current weather
+    document.getElementById('current-temp').textContent = Math.round(data.main.temp);
+    document.getElementById('weather-description').textContent = data.weather[0].description;
+
+    // Fetch and display forecast data
+    const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
+    const forecastData = await forecastResponse.json();
+
+    const forecastContainer = document.getElementById('forecast');
+    forecastContainer.innerHTML = ''; // Clear previous content
+
+    // Display three-day forecast
+    for (let i = 0; i < 3; i++) {
+        const dayData = forecastData.list[i * 8]; // Get the forecast for each day
+        const day = new Date(dayData.dt * 1000).toLocaleDateString();
+        const temp = Math.round(dayData.main.temp);
+        
+        forecastContainer.innerHTML += `<p>${day}: ${temp}°C</p>`;
+    }
+}
+
 async function fetchMemberData() {
     const response = await fetch('data/member.json');
     const data = await response.json();
@@ -93,5 +123,37 @@ function displayMembers(members) {
         `;
 
         directory.appendChild(memberCard);
+    });
+
+    displaySpotlights(members);
+}
+
+function displaySpotlights(members) {
+    const spotlightList = document.getElementById('spotlight-list');
+    spotlightList.innerHTML = ''; // Clear previous content
+
+    // Filter for Gold or Silver members
+    const qualifiedMembers = members.filter(member => member.membership_level === 'Gold' || member.membership_level === 'Silver');
+    
+    // Randomly select 2 or 3 members
+    const selectedMembers = [];
+    while (selectedMembers.length < 3 && qualifiedMembers.length > 0) {
+        const randomIndex = Math.floor(Math.random() * qualifiedMembers.length);
+        selectedMembers.push(qualifiedMembers[randomIndex]);
+        qualifiedMembers.splice(randomIndex, 1); // Remove selected member
+    }
+
+    // Display selected members
+    selectedMembers.forEach(member => {
+        spotlightList.innerHTML += `
+            <div class="spotlight">
+                <h3>${member.name}</h3>
+                <img src="images/${member.image_icon}" alt="${member.name} logo">
+                <p>Phone: ${member.phone_number}</p>
+                <p>Address: ${member.address}</p>
+                <p><a href="${member.website_url}" target="_blank">Visit Website</a></p>
+                <p>Membership Level: ${member.membership_level}</p>
+            </div>
+        `;
     });
 }
