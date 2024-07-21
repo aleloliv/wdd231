@@ -1,175 +1,142 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set current year
-    const currentyear = document.querySelector("#currentyear");
-    const today = new Date();
-    currentyear.textContent = today.getFullYear();
-
-    // Set last modified date
-    let oLastModif = new Date(document.lastModified);
-    const lastModified = document.querySelector("#lastModified");
-
-    function addLeadingZero(number) {
-        return number < 10 ? '0' + number : number;
+    // Set timestamp for the form
+    const timestampInput = document.getElementById('timestamp');
+    if (timestampInput) {
+        const now = new Date();
+        timestampInput.value = now.toISOString();
     }
 
-    let formattedDate = addLeadingZero(oLastModif.getMonth() + 1) + '/' +
-        addLeadingZero(oLastModif.getDate()) + '/' +
-        oLastModif.getFullYear() + ' ' +
-        addLeadingZero(oLastModif.getHours()) + ':' +
-        addLeadingZero(oLastModif.getMinutes()) + ':' +
-        addLeadingZero(oLastModif.getSeconds());
+    // Weather Data
+    const apiKey = '63fd71280537dece5bc28ee2eb59fcc0';
+    const city = 'São Paulo';
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
-    lastModified.textContent = "Last Modification: " + formattedDate;
+    fetch(weatherUrl)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('current-temp').textContent = `${data.main.temp}°C`;
+            document.getElementById('weather-description').textContent = data.weather[0].description;
+        })
+        .catch(error => console.error('Error fetching current weather:', error));
 
-     // Fetch weather data
-     fetchWeatherData();
+    fetch(forecastUrl)
+        .then(response => response.json())
+        .then(data => {
+            const forecast = document.getElementById('forecast');
+            forecast.innerHTML = ''; // Clear previous forecast data
+            
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const today = new Date().getDay();
 
-    // Fetch member data
-    fetchMemberData();
+            for (let i = 0; i < 7; i++) {
+                const forecastDayIndex = (today + i) % 7;
+                const forecastData = data.list[i * 8]; // Forecast data for every 24 hours
+                
+                const forecastDay = document.createElement('div');
+                forecastDay.textContent = `Day ${i + 1}: ${daysOfWeek[forecastDayIndex]} - ${forecastData.main.temp}°C, ${forecastData.weather[0].description}`;
+                forecast.appendChild(forecastDay);
+            }
+        })
+        .catch(error => console.error('Error fetching weather forecast:', error));
 
-    const gridView = document.querySelector('.grid-view');
-    const listView = document.querySelector('.list-view');
-    const toggleButton = document.getElementById('toggle-view');
-    const directory = document.getElementById('directory');
+    // Modal functionality
+    const modals = document.querySelectorAll('.modal');
+    const modalLinks = document.querySelectorAll('.modal-link');
+    const closeButtons = document.querySelectorAll('.close');
 
-    function toggleView() {
-        gridView.classList.toggle('hidden');
-        listView.classList.toggle('hidden');
-        toggleButton.textContent = gridView.classList.contains('hidden') ? 'Switch to Grid View' : 'Switch to List View';
-    }
-
-    // Show/hide the toggle button based on screen size
-    function checkScreenSize() {
-        if (window.innerWidth > 768) {
-            toggleButton.style.display = 'block';
-        } else {
-            toggleButton.style.display = 'none';
-        }
-    }
-
-    // Initial check
-    checkScreenSize();
-
-    // Check on resize
-    window.addEventListener('resize', checkScreenSize);
-
-    toggleButton.addEventListener('click', () => {
-        directory.classList.toggle('grid-view');
-        directory.classList.toggle('list-view');
+    modalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modal = document.querySelector(link.getAttribute('href'));
+            modal.style.display = 'block';
+        });
     });
 
-    // Hamburger menu functionality
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.parentElement.parentElement.style.display = 'none';
+        });
+    });
+
+    window.addEventListener('click', (e) => {
+        modals.forEach(modal => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+    // Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const navigation = document.querySelector('.navigation');
+    const closeBtn = document.querySelector('.close');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navigation.classList.toggle('active');
-        hamburger.textContent = hamburger.classList.contains('active') ? '✕' : '☰'; // Unicode for 'X' and hamburger menu
-    });
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navigation.classList.toggle('open');
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            navigation.classList.remove('open');
+        });
+    }
+
+    // Company Spotlights
+    fetch('data/member.json')
+        .then(response => response.json())
+        .then(members => {
+            const spotlightList = document.getElementById('spotlight-list');
+            const spotlightMembers = members.filter(member => member.membership_level === 2 || member.membership_level === 3);
+            const selectedSpotlights = spotlightMembers.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+            selectedSpotlights.forEach(member => {
+                const memberCard = document.createElement('div');
+                memberCard.classList.add('member-card');
+                memberCard.innerHTML = `
+                    <img src="images/${member.image_icon}" alt="${member.name} logo">
+                    <h3>${member.name}</h3>
+                    <p>Phone: ${member.phone_number}</p>
+                    <p>Address: ${member.address}</p>
+                    <p><a href="${member.website_url}" target="_blank">Visit Website</a></p>
+                    <p>Membership: ${member.membership_level === 3 ? 'Gold' : 'Silver'}</p>
+                `;
+                spotlightList.appendChild(memberCard);
+            });
+        })
+        .catch(error => console.error('Error fetching members:', error));
+
+    // Toggle View Button
+    const toggleViewButton = document.getElementById('toggle-view');
+    const directory = document.querySelector('.directory');
+    let isGridView = true;
+
+    if (toggleViewButton) {
+        toggleViewButton.addEventListener('click', () => {
+            if (isGridView) {
+                directory.classList.remove('grid-view');
+                directory.classList.add('list-view');
+                toggleViewButton.textContent = 'Switch to Grid View';
+            } else {
+                directory.classList.remove('list-view');
+                directory.classList.add('grid-view');
+                toggleViewButton.textContent = 'Switch to List View';
+            }
+            isGridView = !isGridView;
+        });
+
+        // Only show toggle button on desktop view
+        const handleResize = () => {
+            if (window.innerWidth > 768) {
+                toggleViewButton.style.display = 'block';
+            } else {
+                toggleViewButton.style.display = 'none';
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    }
 });
-
-async function fetchWeatherData() {
-    const apiKey = '63fd71280537dece5bc28ee2eb59fcc0';
-    const city = 'Sao Paulo';
-    try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-
-        document.getElementById('current-temp').textContent = Math.round(data.main.temp);
-        document.getElementById('weather-description').textContent = data.weather[0].description;
-
-        // Fetch forecast
-        await fetchForecastData(city, apiKey);
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-    }
-}
-
-async function fetchForecastData(city, apiKey) {
-    try {
-        const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
-        if (!forecastResponse.ok) throw new Error('Network response was not ok');
-        const forecastData = await forecastResponse.json();
-
-        const forecastContainer = document.getElementById('forecast');
-        forecastContainer.innerHTML = ''; // Clear previous content
-
-        // Display three-day forecast
-        for (let i = 0; i < 3; i++) {
-            const dayData = forecastData.list[i * 8]; // Get the forecast for each day
-            const day = new Date(dayData.dt * 1000).toLocaleDateString();
-            const temp = Math.round(dayData.main.temp);
-            forecastContainer.innerHTML += `<p>${day}: ${temp}°C</p>`;
-        }
-    } catch (error) {
-        console.error('Error fetching forecast data:', error);
-    }
-}
-
-async function fetchMemberData() {
-    const response = await fetch('data/member.json');
-    const data = await response.json();
-    displayMembers(data);
-}
-
-function displayMembers(members) {
-    const directory = document.getElementById('directory');
-    directory.innerHTML = '';
-    // Check if we are on the index.html page
-    if (window.location.pathname.endsWith('index.html')) {
-        directory.style.display = 'none'; // Hide the directory
-        return; // Exit the function early
-    } else {
-        directory.classList.add('grid-view'); // Default view
-    }
-
-    members.forEach(member => {
-        const memberCard = document.createElement('div');
-        memberCard.className = 'member-card';
-
-        memberCard.innerHTML = `
-            <h2>${member.name}</h2>
-            <p>${member.description}</p>
-            <p><strong>Address:</strong> ${member.address}</p>
-            <p><strong>Phone:</strong> ${member.phone_number}</p>
-            <p><strong>Email:</strong> <a href="mailto:${member.email}">${member.email}</a></p>
-            <p><strong>Website:</strong> <a href="${member.website_url}" target="_blank">${member.website_url}</a></p>
-            <img src="images/${member.image_icon}" alt="${member.name} logo">
-            <p><strong>Membership Level:</strong> ${member.membership_level}</p>
-        `;
-
-        directory.appendChild(memberCard);
-    });
-
-    displaySpotlights(members);
-}
-
-function displaySpotlights(members) {
-    const spotlightList = document.getElementById('spotlight-list');
-    spotlightList.innerHTML = ''; // Clear previous content
-
-    // Filter for Gold (3) or Silver (2) members
-    const qualifiedMembers = members.filter(member => member.membership_level === 3 || member.membership_level === 2);
-    
-    if (qualifiedMembers.length > 0) {
-        // Randomly select one member
-        const randomIndex = Math.floor(Math.random() * qualifiedMembers.length);
-        const selectedMember = qualifiedMembers[randomIndex];
-
-        // Display the selected member
-        spotlightList.innerHTML = `
-            <div class="spotlight">
-                <h3>${selectedMember.name}</h3>
-                <img src="images/${selectedMember.image_icon}" alt="${selectedMember.name} logo">
-                <p>Phone: ${selectedMember.phone_number}</p>
-                <p>Address: ${selectedMember.address}</p>
-                <p><a href="${selectedMember.website_url}" target="_blank">Visit Website</a></p>
-                <p>Membership Level: ${selectedMember.membership_level === 3 ? 'Gold' : 'Silver'}</p>
-            </div>
-        `;
-    } else {
-        spotlightList.innerHTML = `<p>No qualified members available for spotlight.</p>`;
-    }
-}

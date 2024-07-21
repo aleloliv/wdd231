@@ -1,72 +1,37 @@
-[
-    {
-        "name": "Tech Innovators",
-        "address": "Avenida Paulista, 1000, São Paulo, SP",
-        "phone_number": "+55 11 1234-5678",
-        "website_url": "https://www.techinnovators.com.br",
-        "image_icon": "tech_innovators.png",
-        "membership_level": 3,
-        "description": "Leading technology solutions provider in São Paulo.",
-        "email": "contact@techinnovators.com.br"
-    },
-    {
-        "name": "Green Energy Solutions",
-        "address": "Rua Faria Lima, 200, São Paulo, SP",
-        "phone_number": "+55 11 2345-6789",
-        "website_url": "https://www.greenenergy.com.br",
-        "image_icon": "green_energy.png",
-        "membership_level": 2,
-        "description": "Sustainable energy solutions for businesses and homes.",
-        "email": "info@greenenergy.com.br"
-    },
-    {
-        "name": "Global Marketing Ltda",
-        "address": "Avenida Brigadeiro Luis Antonio, 300, São Paulo, SP",
-        "phone_number": "+55 11 3456-7890",
-        "website_url": "https://www.globalmarketing.com.br",
-        "image_icon": "global_marketing.png",
-        "membership_level": 1,
-        "description": "Full-service marketing agency.",
-        "email": "support@globalmarketing.com.br"
-    },
-    {
-        "name": "São Paulo Finance",
-        "address": "Rua da Consolação, 400, São Paulo, SP",
-        "phone_number": "+55 11 4567-8901",
-        "website_url": "https://www.spfinance.com.br",
-        "image_icon": "sp_finance.png",
-        "membership_level": 3,
-        "description": "Financial services and investment advice.",
-        "email": "finance@spfinance.com.br"
-    },
-    {
-        "name": "Healthy Living",
-        "address": "Avenida Ipiranga, 500, São Paulo, SP",
-        "phone_number": "+55 11 5678-9012",
-        "website_url": "https://www.healthyliving.com.br",
-        "image_icon": "healthy_living.png",
-        "membership_level": 2,
-        "description": "Health and wellness products and services.",
-        "email": "contact@healthyliving.com.br"
-    },
-    {
-        "name": "EduFuture",
-        "address": "Rua Augusta, 600, São Paulo, SP",
-        "phone_number": "+55 11 6789-0123",
-        "website_url": "https://www.edufuture.com.br",
-        "image_icon": "edufuture.png",
-        "membership_level": 1,
-        "description": "Innovative educational tools and resources.",
-        "email": "info@edufuture.com.br"
-    },
-    {
-        "name": "Urban Development Corp",
-        "address": "Avenida Rebouças, 700, São Paulo, SP",
-        "phone_number": "+55 11 7890-1234",
-        "website_url": "https://www.urbandevelopment.com.br",
-        "image_icon": "urban_development.png",
-        "membership_level": 3,
-        "description": "Real estate development and urban planning.",
-        "email": "contact@urbandevelopment.com.br"
-    }
-]
+{
+    "members": [
+      {
+        "companyName": "Gold Member Company 1",
+        "logo": "images/gold1.png",
+        "phone": "123-456-7890",
+        "address": "123 Gold St, City, Country",
+        "website": "http://www.goldmember1.com",
+        "membershipLevel": "Gold"
+      },
+      {
+        "companyName": "Silver Member Company 1",
+        "logo": "images/silver1.png",
+        "phone": "234-567-8901",
+        "address": "456 Silver St, City, Country",
+        "website": "http://www.silvermember1.com",
+        "membershipLevel": "Silver"
+      },
+      {
+        "companyName": "Gold Member Company 2",
+        "logo": "images/gold2.png",
+        "phone": "345-678-9012",
+        "address": "789 Gold St, City, Country",
+        "website": "http://www.goldmember2.com",
+        "membershipLevel": "Gold"
+      },
+      {
+        "companyName": "Silver Member Company 2",
+        "logo": "images/silver2.png",
+        "phone": "456-789-0123",
+        "address": "012 Silver St, City, Country",
+        "website": "http://www.silvermember2.com",
+        "membershipLevel": "Silver"
+      }
+    ]
+  }
+  

@@ -1,0 +1,49 @@
+**Meyzam Engineering Website**
+
+The Meyzam Engineering website is designed with a clean and straightforward layout, tailored for a company specializing in electrical plans and projects. The homepage introduces the company and showcases images of their completed projects. A prominent 'Contact Us' button leads visitors to a form where they can enter their name, phone number, email, address, and specific requirements. 
+
+The second page serves as both a portfolio and an 'About Us' section. It highlights the company's major projects, vision, mission, and values, accompanied by relevant images. The third page features the 'Contact Us' form as described earlier.
+
+Meyzam is my entrepreneurial venture, aiming to establish a successful business in Electrical Engineering. Despite my passion and skills, marketing has been a significant challenge, and I believe a well-designed website will be a powerful tool to promote my company effectively.
+
+Meyzam Engineering Website
+
+The Meyzam Engineering website is a personal project showcasing a company specializing in electrical plans and projects. This site features a clean and simple layout with a cohesive structure and relevant content across three main pages.
+
+Homepage:
+
+Introduces the company and displays images of completed projects.
+Includes a 'Contact Us' button linking to a form for visitors to provide their name, phone number, email, address, and specific requirements.
+Portfolio and About Us Page:
+
+Details the company's major projects, vision, mission, and values, supplemented with relevant images.
+Serves as an 'About Us' section highlighting the company's background and achievements.
+Contact Us Page:
+
+Contains the 'Contact Us' form as described above, allowing potential clients to reach out directly.
+Project Execution:
+
+The website will be hosted on GitHub and made publicly available via GitHub Pages.
+All files and folders will adhere to lowercase, no spaces, and semantic naming conventions.
+The HTML will be standards-based and valid, ensuring a structured and accessible website.
+The CSS will be clean, efficient, and free from duplicate declarations, following the design principles (PARC).
+Responsive design principles will be implemented, ensuring the site functions well on both mobile and larger screens.
+The site will include optimized images, social media metadata, and a favicon based on the site logo.
+Lazy loading techniques will be used to enhance performance.
+The HTML form will be standard-compliant, and the form data will be displayed on a form action page.
+JavaScript Integration:
+
+Dynamic elements will be provided by JavaScript, including well-organized code with a minimum of three functions and ES modules.
+The site will feature DOM interaction, conditional branching, array methods, template literals, localStorage usage, API integration, and asynchronous functions with try blocks.
+At least 15 items will be built dynamically from the data source, each with a modal dialog containing relevant information.
+Additional Requirements:
+
+Spelling and grammar will be checked for accuracy.
+A link to the attributions page will be included in the footer.
+The design will support accessibility and usability.
+No page will exceed 500kB of total data transfer from an empty cache.
+The project will be completed by the due date.
+Video Reflection:
+
+A 3-5 minute video demonstrating the website will be created, showcasing the site's purpose, responsive design, navigation, API integration, and a brief introduction.
+This project will adhere to all the course requirements, ensuring a comprehensive and functional website that effectively represents Meyzam Engineering.
