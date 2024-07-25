@@ -1,0 +1,107 @@
+[
+    {
+        "name": "Project 1",
+        "category": "Electrical Engineering",
+        "location": "São Paulo, Brazil",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 2",
+        "category": "Structural Engineering",
+        "location": "New York, USA",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 3",
+        "category": "Structural Engineering",
+        "location": "London, UK",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 4",
+        "category": "Civil Engineering",
+        "location": "Paris, France",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 5",
+        "category": "Mechanical Engineering",
+        "location": "Berlin, Germany",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 6",
+        "category": "Environmental Engineering",
+        "location": "Tokyo, Japan",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 7",
+        "category": "Aerospace Engineering",
+        "location": "Moscow, Russia",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 8",
+        "category": "Software Engineering",
+        "location": "San Francisco, USA",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 9",
+        "category": "Biomedical Engineering",
+        "location": "Toronto, Canada",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 10",
+        "category": "Marine Engineering",
+        "location": "Sydney, Australia",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 11",
+        "category": "Geotechnical Engineering",
+        "location": "Cape Town, South Africa",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 12",
+        "category": "Industrial Engineering",
+        "location": "Shanghai, China",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 13",
+        "category": "Nuclear Engineering",
+        "location": "Seoul, South Korea",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 14",
+        "category": "Chemical Engineering",
+        "location": "Mumbai, India",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    },
+    {
+        "name": "Project 15",
+        "category": "Automotive Engineering",
+        "location": "Detroit, USA",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "images": ["plan-engineering-1440-900.webp", "electric-engineering-3481-2500.webp"]
+    }
+]

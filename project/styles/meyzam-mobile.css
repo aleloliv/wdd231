@@ -10,6 +10,10 @@
 }
 
 @media (max-width: 1000px) {
+    #forecast div {
+        flex: 1 1 100%;
+    }
+
     body, html {
         height: 100%;
         font-family: var(--paragraph-font);
