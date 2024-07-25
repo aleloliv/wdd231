@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meyzam Engineering About Us Page - WDD 131: Dynamic Web Fundamentals - W06 Website Project</title>
+    <meta name="description" content="Meyzam Engineering Web Page - WDD 131: Dynamic Web Fundamentals - W06 Website Project. This is the web page for the engineering company Meyzam Engineering">
+    <meta name="author" content="Alexandre de Morais Sanches Lorenzoni de Oliveira">
+    <link rel="stylesheet" href="styles/meyzam.css">
+    <link rel="stylesheet" href="styles/meyzam-mobile.css">
+    <script defer src="scripts/about-us.js"></script>
+</head>
+<body>
+    <header>
+        <img src="images/white_logo_color_background.webp" class="logo" alt="Meyzam Logo">
+        <nav>
+            <ul class="navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </header>
+    <main>
+        <section class="about-section">
+            <div class="about-content">
+                <h1>About Meyzam Engineering</h1>
+                <p>Meyzam Engineering and Projects is an engineering company founded in 2023. We are a small office that designs electrical plans and schemes for various types of buildings, including high-standard housing, residential condominiums, office buildings, commercial buildings, religious buildings, mixed-use buildings, industrial warehouses, and many more.</p>
+                <p>We manage projects from conception to execution, including diagrams, tables, and all necessary documentation for system functionality. We also develop structured cabling projects, CCTV, access control, security, audio-visual, and fire alarm and detection projects, as well as electrical discharge protection systems (SPDA in Brazilian Portuguese).</p>
+                <p>Our services include technical documentation (laudos in Portuguese), construction follow-up (acompanhamento de obras), and various other electrical engineering services for buildings. We prioritize time efficiency and high quality in all our projects.</p>
+                <p>Our mission is to deliver top-quality engineering solutions with integrity and excellence. We envision a future where our innovative and reliable services set the standard in the industry.</p>
+                <div class="vision-values-mission">
+                    <h2>Vision</h2>
+                    <p>To be a leading engineering firm known for innovative and reliable solutions that enhance the built environment.</p>
+                    <h2>Values</h2>
+                    <ul>
+                        <li>Quality: We strive for excellence in all our projects.</li>
+                        <li>Integrity: We conduct our business with honesty and transparency.</li>
+                        <li>Customer Focus: We prioritize the needs and satisfaction of our clients.</li>
+                        <li>Innovation: We embrace new technologies and methodologies to improve our services.</li>
+                    </ul>
+                    <h2>Mission</h2>
+                    <p>To provide high-quality, efficient, and innovative engineering solutions that meet the diverse needs of our clients and contribute to the development of safe and sustainable buildings.</p>
+                </div>
+                <p>Operating in São Paulo City, Brazil, we use CAD software and BIM methodology to develop detailed project information before construction begins, ensuring precision and efficiency.</p>
+            </div>
+            <div class="about-images">
+                <img src="images/engineer.webp" alt="Engineering Team">
+                <img src="images/project-discussion.webp" alt="Project Discussion">
+                <img src="images/office.webp" alt="Office Environment">
+            </div>
+        </section>
+        
+        <section class="timeline-section">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2023</h3>
+                    <p>Meyzam Engineering was founded, focusing on delivering high-standard electrical designs.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2024</h3>
+                    <p>Expanded our services to include structured cabling, CCTV, and security systems.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2025</h3>
+                    <p>Implemented BIM methodology to enhance project precision and efficiency.</p>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials-section">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"Meyzam Engineering exceeded our expectations with their professional and timely service."</p>
+                    <h4>- Client A</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"Their innovative solutions helped us complete our project on time and within budget."</p>
+                    <h4>- Client B</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"We highly recommend Meyzam for their excellent customer service and technical expertise."</p>
+                    <h4>- Client C</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="clients-section">
+            <h2>Our Clients</h2>
+            <div class="clients-logos">
+                <img src="images/client1-logo.webp" alt="Client 1 Logo">
+                <img src="images/client2-logo.webp" alt="Client 2 Logo">
+                <img src="images/client3-logo.webp" alt="Client 3 Logo">
+                <!-- Add more client logos as necessary -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <ul class="site-map">
+            <li><h2>Site Map</h2></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="projects.html">Our Projects</a></li>
+            <li><a href="projects.html">Services</a></li>
+            <li><a href="contact-us.html">Work With Us</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <ul class="social-media-map">
+            <li><h2>Social Media</h2></li>
+            <li><a href="https://facebook.com">Facebook</a></li>
+            <li><a href="https://instagram.com">Instagram</a></li>
+            <li><a href="https://linkedin.com">LinkedIn</a></li>
+        </ul>
+        <ul class="contact-map">
+            <li><h2>Contact</h2></li>
+            <li>St street, Nºxx, neighborhood, city, state, country</li>
+            <li>(xx) xxxxx-xxxx</li>
+            <li>email@email.com.br</li>
+        </ul>
+        <p>©<span id="currentyear"></span> | Meyzam Engineering and Projects</p>
+        <div class="social-media-icon">
+            <a href="https://www.linkedin.com">
+                <img src="images/linkedin-icon.webp" alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com/">
+                <img src="images/instagram-icon.webp" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/">
+                <img src="images/facebook-icon.webp" alt="Facebook">
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
